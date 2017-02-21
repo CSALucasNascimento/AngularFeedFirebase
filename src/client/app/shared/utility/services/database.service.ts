@@ -10,7 +10,11 @@ export class DatabaseService {
     console.log('Constructing DatabaseService');
     // Initialize Firebase
       var config = {
-      //Settings from firebase
+      apiKey: "AIzaSyCYnsEyvWhChQhlYkBze5ZffRWLMlW5l0s",
+      authDomain: "fir-demo-e8c2a.firebaseapp.com",
+      databaseURL: "https://fir-demo-e8c2a.firebaseio.com",
+      storageBucket: "fir-demo-e8c2a.appspot.com",
+      messagingSenderId: "184953278632"
     };
     firebase.initializeApp(config);
     this.database = firebase.database();

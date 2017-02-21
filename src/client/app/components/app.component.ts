@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 // app
 import { AnalyticsService } from '../shared/analytics/index';
 import { Config, LogService, AppService } from '../shared/core/index';
-import {DatabaseService} from '../shared/utility/services/database.service';
 
 /**
  * This class represents the main application component.
@@ -22,15 +21,8 @@ export class AppComponent {
     public analytics: AnalyticsService,
     public log: LogService,
     private appService: AppService,
-    private databaseService: DatabaseService
   ) {
     log.debug(`Config env: ${Config.ENVIRONMENT().ENV}`);
-    let count = 0;
-      databaseService.sync('counters', (data:any) => {
-        console.log('Synced path updated', data);
-      });
-      setInterval(() => {
-        databaseService.addChild('counters', count++);
-      }, 3000);
+
   }
 }

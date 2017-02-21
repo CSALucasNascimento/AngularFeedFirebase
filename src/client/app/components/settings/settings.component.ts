@@ -1,7 +1,7 @@
 import { Injector, Component } from '@angular/core';
 import { Config } from '../../shared/core/index';
 
-// import {DatabaseService} from '../../shared/utility/services/database.service';
+import {DatabaseService} from '../../shared/utility/services/database.service';
 @Component({
   moduleId: module.id,
   selector: 'sd-settings',
@@ -28,7 +28,14 @@ export class SettingsComponent {
     }
   }
 
-  constructor(private injector: Injector) {
-    
+  constructor(private injector: Injector, private databaseService:DatabaseService) {
+    let count = 0;
+      databaseService.sync('counters', (data:any) => {
+        console.log('Synced path updated', data);
+      });
+      setInterval(() => {
+        databaseService.addChild('counters', count++);
+      }, 3000);
+
   }
 }
