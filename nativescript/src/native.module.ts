@@ -31,6 +31,8 @@ import { ComponentsModule, cons } from './components.module';
 // {N} custom app specific
 import { WindowNative, NSAppService } from './mobile/core/index';
 import { NS_ANALYTICS_PROVIDERS } from './mobile/analytics/index';
+// import { NSDatabaseService } from './mobile/core/index';
+// import { DatabaseService } from './app/shared/utility/services/database.service';
 
 /**
  * Config
@@ -53,9 +55,9 @@ import { AppConfig } from './app/shared/sample/services/app-config';
 import { MultilingualService } from './app/shared/i18n/services/multilingual.service';
 MultilingualService.SUPPORTED_LANGUAGES = AppConfig.SUPPORTED_LANGUAGES;
 
-//Firebase service
+Firebase service
 import {FIREBASE} from './app/shared/utility/index';
-var firebase = require('nativescript-plugin-firebase');
+import firebase = require("nativescript-plugin-firebase");
 export function firebaseFactory() {
   return firebase;
 }
@@ -75,8 +77,8 @@ export function firebaseFactory() {
   providers: [
     NS_ANALYTICS_PROVIDERS,
     { provide: RouterExtensions, useClass: TNSRouterExtensions },
-    { provide: AppService, useClass: NSAppService },
-    { provide: FIREBASE, useFactory: (firebaseFactory) }
+    { provide: AppService, useClass: NSAppService }
+    { provide: FIREBASE, useFactory: (firebaseFactory) },
   ],
   schemas: [
     NO_ERRORS_SCHEMA,
